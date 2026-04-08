@@ -841,6 +841,13 @@ a:hover {
   color: #991b1b;
 }
 
+.field-error {
+  display: block;
+  font-size: 0.82rem;
+  color: #991b1b;
+  margin-top: 4px;
+}
+
 /* ── Content ── */
 
 .content {

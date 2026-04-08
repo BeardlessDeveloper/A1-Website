@@ -86,7 +86,19 @@ export default function IntakeForm() {
   const showTrustDate = isAmendment || intakeType === 'trust_restatement';
   const showTrustSections = !isWill;
 
-  // --- Repeater helpers ---
+  // --- Helpers ---
+
+  function formatPhone(value: string): string {
+    const digits = value.replace(/\D/g, '').slice(0, 10);
+    if (digits.length <= 3) return digits;
+    if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+  }
+
+  function isValidEmail(email: string): boolean {
+    if (!email) return true;
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
 
   function updateList<T>(list: T[], index: number, patch: Partial<T>): T[] {
     return list.map((item, i) => (i === index ? { ...item, ...patch } : item));
@@ -105,6 +117,8 @@ export default function IntakeForm() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!intakeType) return;
+    const allEmails = [client1.email, client2.email, ...hpoa.map(h => h.email)];
+    if (allEmails.some(e => !isValidEmail(e))) return;
     setStatus('submitting');
 
     const payload = {
@@ -191,7 +205,7 @@ export default function IntakeForm() {
                   <input
                     type="text"
                     value={trustName}
-                    onChange={e => setTrustName(e.target.value)}
+                    onChange={e => setTrustName(e.target.value.toUpperCase())}
                     required
                     placeholder="e.g. The Smith Family Trust"
                   />
@@ -281,11 +295,12 @@ export default function IntakeForm() {
               </label>
               <label>
                 Phone
-                <input type="tel" value={client1.phone} onChange={e => setClient1({ ...client1, phone: e.target.value })} placeholder="(555) 123-4567" />
+                <input type="tel" value={client1.phone} onChange={e => setClient1({ ...client1, phone: formatPhone(e.target.value) })} placeholder="(555) 123-4567" />
               </label>
               <label>
                 Email
                 <input type="email" value={client1.email} onChange={e => setClient1({ ...client1, email: e.target.value })} />
+                {!isValidEmail(client1.email) && <span className="field-error">Enter a valid email address.</span>}
               </label>
             </div>
           </div>
@@ -312,11 +327,12 @@ export default function IntakeForm() {
               </label>
               <label>
                 Phone
-                <input type="tel" value={client2.phone} onChange={e => setClient2({ ...client2, phone: e.target.value })} placeholder="(555) 123-4567" />
+                <input type="tel" value={client2.phone} onChange={e => setClient2({ ...client2, phone: formatPhone(e.target.value) })} placeholder="(555) 123-4567" />
               </label>
               <label>
                 Email
                 <input type="email" value={client2.email} onChange={e => setClient2({ ...client2, email: e.target.value })} />
+                {!isValidEmail(client2.email) && <span className="field-error">Enter a valid email address.</span>}
               </label>
             </div>
           </div>
@@ -456,11 +472,12 @@ export default function IntakeForm() {
                   </label>
                   <label>
                     HCPOA {i + 1} Phone
-                    <input type="tel" value={row.phone} onChange={e => setHpoa(updateList(hpoa, i, { phone: e.target.value }))} placeholder="(555) 123-4567" />
+                    <input type="tel" value={row.phone} onChange={e => setHpoa(updateList(hpoa, i, { phone: formatPhone(e.target.value) }))} placeholder="(555) 123-4567" />
                   </label>
                   <label>
                     HCPOA {i + 1} Email
                     <input type="email" value={row.email} onChange={e => setHpoa(updateList(hpoa, i, { email: e.target.value }))} />
+                    {!isValidEmail(row.email) && <span className="field-error">Enter a valid email address.</span>}
                   </label>
                 </div>
               ))}

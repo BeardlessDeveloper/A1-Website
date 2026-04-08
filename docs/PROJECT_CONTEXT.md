@@ -87,6 +87,27 @@ The dynamic features (form submission, future payments) are handled server-side 
 ### Why the API is a separate repo
 The frontend is public on GitHub Pages (the repo must be public for free Pages hosting). The API server contains SMTP credentials and will eventually contain payment keys. Keeping it in a separate, private repo ensures no secrets can accidentally be committed to the public frontend repo.
 
+### IntakeForm privacy — planned and future options
+
+The client intake form (`IntakeForm.tsx`) contains proprietary field logic and business-specific document structure that should not be visible in the public repo. Three options were evaluated:
+
+**Option A — Git submodule (planned, not yet implemented)**
+Move `src/components/IntakeForm.tsx` into a new private GitHub repo (e.g. `A1-Intake`). Add it as a git submodule inside `src/components/`. The main repo stays public; the submodule content is inaccessible without repo access. GitHub Actions must be updated to pass a deploy key or PAT so CI can pull the submodule during build.
+
+Steps to implement:
+1. Create private repo `BeardlessDeveloper/A1-Intake`
+2. Move `IntakeForm.tsx` into it
+3. `git submodule add git@github.com:BeardlessDeveloper/A1-Intake.git src/components/intake`
+4. Update import in `intake.astro` to `../components/intake/IntakeForm`
+5. Add `--recurse-submodules` step in `deploy.yml` (or configure a deploy key)
+6. Add `.gitmodules` to the public repo — this file is safe to commit
+
+**Option B — Private npm package (future)**
+Publish `IntakeForm.tsx` as a private package via GitHub Packages (`@BeardlessDeveloper/a1-intake`). Install it as a dependency. More setup overhead (package.json, build step, versioning) but cleaner long-term if the form grows into a multi-component module.
+
+**Option C — Serve form from API (future)**
+Remove the intake form from the static site entirely. Host it as a server-rendered page on `api.a1paralegal.com/intake`. The booking flow links there directly. No React island, no GitHub Pages, no submodule complexity. Pairs naturally with the future payment-gated intake flow (see Reserve Your Spot below).
+
 ### Why vanilla CSS instead of Tailwind or a component library
 The design was already built in the WordPress theme. The CSS was ported directly and is clean, well-organized, and uses CSS custom properties for the design system. Adding a framework would add complexity with no benefit at this scale.
 
@@ -207,6 +228,7 @@ See `A1-API/docs/SERVER_AGENT_DEPLOY.md` for step-by-step server update instruct
 - [x] Cloudflare Tunnel active — `api.a1paralegal.com` routing to Ubuntu server
 - [ ] Payments not yet implemented
 - [ ] Intake form submissions currently saved to disk only — email/database integration pending
+- [ ] IntakeForm.tsx privacy — Option A (git submodule) planned, not yet implemented. See Architecture Decisions section.
 - [ ] Future: "Reserve Your Spot" flow — client pays a deposit/retainer, then gets access to the intake form. Intake stays at `/intake/` but becomes gated behind a payment step rather than a direct shared link. Likely needs a `/reserve/` page with payment integration (Stripe or similar) on the API side.
 
 ---
