@@ -29,6 +29,7 @@ When a custom domain is live, remove `base: '/A1-Website'` from `astro.config.mj
 
 ## Reference docs
 
+- **Full project context, stack decisions, current state** → [`docs/PROJECT_CONTEXT.md`](docs/PROJECT_CONTEXT.md)
 - **Content, copy, and design decisions** → [`THEME_NOTES.md`](THEME_NOTES.md)
 - **Ubuntu server + Cloudflare Tunnel setup** → [`docs/UBUNTU_SERVER_SETUP.md`](docs/UBUNTU_SERVER_SETUP.md)
 - **DNS and domain wiring** → [`docs/DOMAIN_WIRING.md`](docs/DOMAIN_WIRING.md)
