@@ -3,7 +3,8 @@
   "type": "module",
   "version": "0.1.0",
   "scripts": {
-    "dev": "astro dev",
+    "prebuild": "node scripts/copy-internal-assets.mjs",
+    "dev": "node scripts/copy-internal-assets.mjs && astro dev",
     "build": "astro build",
     "preview": "astro preview"
   },

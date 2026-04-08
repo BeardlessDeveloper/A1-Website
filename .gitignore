@@ -2,3 +2,7 @@ node_modules/
 dist/
 .env
 GIT_COMMIT_IDENTITY.md
+
+# Copied from internal submodule by prebuild script — do not commit
+public/images/
+public/favicon.ico

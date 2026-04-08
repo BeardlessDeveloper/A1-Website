@@ -1,0 +1,11 @@
+{
+  "_note": "Full settings live in internal/.claude/settings.local.json — copy here if needed locally.",
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m ':*)",
+      "Bash(git push:*)"
+    ]
+  }
+}

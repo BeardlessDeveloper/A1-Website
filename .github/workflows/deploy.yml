@@ -19,6 +19,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: false
+      - name: Set up SSH for internal submodule
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.INTERNAL_DEPLOY_KEY }}
+      - name: Rewrite submodule URL to SSH and pull
+        run: |
+          git config --global url."git@github.com:".insteadOf "https://github.com/"
+          git submodule update --init --recursive
       - uses: actions/setup-node@v4
         with:
           node-version: 20
