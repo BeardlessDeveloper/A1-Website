@@ -63,7 +63,7 @@ Fill in the values. The file looks like this — replace the placeholders:
 
 ```
 PORT=3001
-ALLOWED_ORIGINS=https://beardlessdeveloper.github.io,https://www.a1qualityparalegal.com
+ALLOWED_ORIGINS=https://beardlessdeveloper.github.io,https://www.a1paralegal.com
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=a1qualitydocuments@gmail.com
@@ -190,7 +190,7 @@ tunnel: YOUR_TUNNEL_ID
 credentials-file: /home/YOUR_UBUNTU_USERNAME/.cloudflared/YOUR_TUNNEL_ID.json
 
 ingress:
-  - hostname: api.a1qualityparalegal.com
+  - hostname: api.a1paralegal.com
     service: http://localhost:3001
   - service: http_status:404
 ```
@@ -202,10 +202,10 @@ Save and close: `Ctrl+O`, Enter, `Ctrl+X`
 ## 12. Route the tunnel to your domain DNS
 
 ```bash
-cloudflared tunnel route dns a1-api api.a1qualityparalegal.com
+cloudflared tunnel route dns a1-api api.a1paralegal.com
 ```
 
-This automatically creates a CNAME record in Cloudflare DNS pointing `api.a1qualityparalegal.com` at your tunnel. (You do not need to open any router ports.)
+This automatically creates a CNAME record in Cloudflare DNS pointing `api.a1paralegal.com` at your tunnel. (You do not need to open any router ports.)
 
 ---
 
@@ -230,7 +230,7 @@ sudo systemctl status cloudflared
 From any device on any network (not just your LAN), run:
 
 ```bash
-curl https://api.a1qualityparalegal.com/health
+curl https://api.a1paralegal.com/health
 # Expected: {"ok":true}
 ```
 

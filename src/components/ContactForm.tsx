@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const API_URL = import.meta.env.PUBLIC_API_URL ?? 'https://api.a1qualityparalegal.com';
+const API_URL = import.meta.env.PUBLIC_API_URL ?? 'https://api.a1paralegal.com';
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 

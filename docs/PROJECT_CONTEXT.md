@@ -66,7 +66,7 @@ The decision was made to migrate off WordPress entirely and rebuild as a static 
 | Component | Tool | Notes |
 |---|---|---|
 | DNS / CDN | Cloudflare | Manages domain, issues tunnel CNAME |
-| Tunnel | Cloudflare Tunnel | `api.a1qualityparalegal.com` → `localhost:3001` |
+| Tunnel | Cloudflare Tunnel | `api.a1paralegal.com` → `localhost:3001` |
 | SSL (frontend) | GitHub Pages / Let's Encrypt | Automatic |
 | SSL (API) | Cloudflare Tunnel | Automatic — no cert management needed |
 | Email (SMTP) | Gmail + App Password | Sends intake notifications to business email |

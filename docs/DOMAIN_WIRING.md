@@ -1,6 +1,6 @@
 # Domain Wiring Guide — A1 Quality Paralegal
 
-This guide assumes your domain (`a1qualityparalegal.com`) is managed through Cloudflare DNS.
+This guide assumes your domain (`a1paralegal.com`) is managed through Cloudflare DNS.
 If your domain registrar is not Cloudflare, the records are the same — just enter them
 wherever your DNS is managed.
 
@@ -10,9 +10,9 @@ wherever your DNS is managed.
 
 | Subdomain | Points to | Purpose |
 |---|---|---|
-| `www.a1qualityparalegal.com` | GitHub Pages | The website |
-| `a1qualityparalegal.com` (apex) | GitHub Pages | Redirect to www |
-| `api.a1qualityparalegal.com` | Cloudflare Tunnel | The Express API server |
+| `www.a1paralegal.com` | GitHub Pages | The website |
+| `a1paralegal.com` (apex) | GitHub Pages | Redirect to www |
+| `api.a1paralegal.com` | Cloudflare Tunnel | The Express API server |
 
 The `api` record is created automatically by `cloudflared tunnel route dns` (covered in the Ubuntu setup guide). This guide focuses on wiring `www` and the apex domain to GitHub Pages.
 
@@ -21,7 +21,7 @@ The `api` record is created automatically by `cloudflared tunnel route dns` (cov
 ## Part 1 — Add your custom domain to GitHub Pages
 
 1. Go to **github.com/BeardlessDeveloper/A1-Website** → Settings → Pages
-2. Under **Custom domain**, type `www.a1qualityparalegal.com` and click Save
+2. Under **Custom domain**, type `www.a1paralegal.com` and click Save
 3. GitHub will attempt to verify the domain. Leave this page open — it will update once DNS propagates.
 
 ---
@@ -61,11 +61,11 @@ You can check progress from any terminal:
 
 ```bash
 # Check www CNAME
-dig www.a1qualityparalegal.com CNAME +short
+dig www.a1paralegal.com CNAME +short
 # Should return: beardlessdeveloper.github.io.
 
 # Check apex A records
-dig a1qualityparalegal.com A +short
+dig a1paralegal.com A +short
 # Should return the four GitHub IPs above
 ```
 
@@ -98,7 +98,7 @@ export default defineConfig({
 ```js
 // After (custom domain, root path)
 export default defineConfig({
-  site: 'https://www.a1qualityparalegal.com',
+  site: 'https://www.a1paralegal.com',
   // base is removed — site lives at the root
   ...
 });
@@ -113,7 +113,7 @@ Then commit and push — the GitHub Actions workflow will rebuild and redeploy a
 In `~/a1-api/.env` on the Ubuntu machine, update `ALLOWED_ORIGINS` to include your custom domain:
 
 ```
-ALLOWED_ORIGINS=https://www.a1qualityparalegal.com,https://beardlessdeveloper.github.io
+ALLOWED_ORIGINS=https://www.a1paralegal.com,https://beardlessdeveloper.github.io
 ```
 
 Then restart the API:
@@ -126,8 +126,8 @@ pm2 restart a1-api
 
 ## Verification checklist
 
-- [ ] `https://www.a1qualityparalegal.com` loads the site with a valid SSL padlock
-- [ ] `https://a1qualityparalegal.com` redirects to `www`
-- [ ] `https://api.a1qualityparalegal.com/health` returns `{"ok":true}`
+- [ ] `https://www.a1paralegal.com` loads the site with a valid SSL padlock
+- [ ] `https://a1paralegal.com` redirects to `www`
+- [ ] `https://api.a1paralegal.com/health` returns `{"ok":true}`
 - [ ] Submitting the contact form sends an email to `a1qualitydocuments@gmail.com`
 - [ ] No browser console errors about CORS or mixed content
