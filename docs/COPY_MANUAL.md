@@ -197,6 +197,7 @@ The following is a review of existing website copy against these guidelines.
 | Location | Current copy | Status | Notes |
 |---|---|---|---|
 | Homepage hero | "Helping You, Help Yourself" | ✅ Keep | Perfect encapsulation of our model |
+| Homepage estate card | "Start with clear, guided packages..." | ❌ Fixed | "guided" falls under the guidance rule — changed to "straightforward" |
 | Homepage intro | "personal, professional, and friendly service for legal document preparation and filing" | ✅ Keep | Accurate and warm |
 | Mission section | "listen to your words, hear your heart, and support you in accomplishing your desires" | ✅ Keep | Appropriate warmth |
 | Services panel | "Guidance and filing support" | ❌ Fix | "Guidance" is a loaded term — change to "document preparation and filing support" |
