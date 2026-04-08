@@ -21,7 +21,7 @@ Not a law firm — they prepare documents to client direction and do not provide
 
 ## Origin of This Build
 
-The site previously existed as a Wix site. A custom WordPress theme was built as an intermediate step (targeting SiteGround hosting, WordPress 6.9.1, PHP 8.2). That WordPress theme is preserved in this repo as the PHP files in the root — they serve as the canonical content and design reference but are no longer the active codebase.
+The site previously existed as a Wix site. A custom WordPress theme was built as an intermediate step (targeting SiteGround hosting, WordPress 6.9.1, PHP 8.2). That WordPress theme has since been removed from the repo — the Astro site is the sole active codebase.
 
 The decision was made to migrate off WordPress entirely and rebuild as a static site on GitHub Pages with a self-hosted API backend. The motivations were:
 - Eliminate WordPress hosting costs and maintenance overhead
@@ -183,11 +183,16 @@ git pull on Ubuntu machine → pm2 restart a1-api
 ## Current State (as of April 2026)
 
 - [x] Astro frontend built and deployed to GitHub Pages
-- [x] All four pages ported from WordPress theme
+- [x] All four pages ported and polished (Home, Estate Planning, Bookings, Contact)
+- [x] 404 page added
 - [x] React contact form wired to API endpoint
 - [x] Express API server scaffolded with email handler
+- [x] A1-API repo created at github.com/BeardlessDeveloper/A1-API (private)
 - [x] PM2 and Cloudflare Tunnel instructions documented
-- [ ] Custom domain not yet wired (DNS records pending)
+- [x] WordPress PHP files and legacy assets removed from repo
+- [x] UI/UX overhaul — Cormorant Garamond/Source Sans 3 typography, mobile hamburger nav, active nav links, IntersectionObserver scroll reveals, clickable contact info throughout
+- [x] Domain updated to a1paralegal.com across all config and docs
+- [ ] Custom domain not yet wired (DNS records pending — see `docs/DOMAIN_WIRING.md`)
 - [ ] `astro.config.mjs` base path not yet updated for custom domain
 - [ ] Ubuntu server not yet provisioned (pending `docs/UBUNTU_SERVER_SETUP.md`)
 - [ ] Gmail App Password not yet configured
@@ -207,6 +212,5 @@ These need real inputs before the site is complete:
 
 ## Related Documentation
 
-- [`THEME_NOTES.md`](../THEME_NOTES.md) — original WordPress theme decisions and content sources
 - [`docs/UBUNTU_SERVER_SETUP.md`](UBUNTU_SERVER_SETUP.md) — step-by-step Ubuntu + Cloudflare Tunnel setup
-- [`docs/DOMAIN_WIRING.md`](DOMAIN_WIRING.md) — DNS records and custom domain wiring
+- [`docs/DOMAIN_WIRING.md`](DOMAIN_WIRING.md) — DNS records and custom domain wiring (a1paralegal.com)
