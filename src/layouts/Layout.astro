@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { title, description = 'Family-owned legal document preparation in Grants Pass, Oregon since 1995.' } = Astro.props;
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
 <!doctype html>
