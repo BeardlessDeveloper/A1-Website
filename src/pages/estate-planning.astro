@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout
+  title="Estate Planning"
+  description="Estate planning packages for Oregon families — wills, trusts, power of attorney, and more from A1 Quality Paralegal."
+>
+  <section class="page-hero reveal">
+    <div class="page-hero__inner">
+      <h1>Estate Planning</h1>
+      <p>We help families across Oregon build clear, reliable estate documents with personal guidance.</p>
+    </div>
+  </section>
+
+  <section class="packages reveal delay-1">
+    <div class="packages__inner">
+      <h2>Estate Packages</h2>
+      <p>Choose a package that fits your needs. We will walk you through every step.</p>
+
+      <div class="package-grid">
+        <div class="package-card">
+          <h3>Small Estate Package</h3>
+          <p class="package-card__price">$750.00</p>
+          <ul>
+            <li>Last Will and Testament</li>
+            <li>Durable General Power of Attorney</li>
+            <li>Oregon Advanced Directive</li>
+            <li>Health Care Power of Attorney</li>
+          </ul>
+        </div>
+        <div class="package-card">
+          <h3>Large Estate Package (Single)</h3>
+          <p class="package-card__price">$1,500.00</p>
+          <ul>
+            <li>Grantors' Certification and Memorandum of Trust</li>
+            <li>Revocable Trust Agreement</li>
+            <li>Pour Over Will</li>
+            <li>Durable General Power of Attorney</li>
+            <li>Oregon Advanced Directive</li>
+            <li>Health Care Power of Attorney</li>
+          </ul>
+        </div>
+        <div class="package-card">
+          <h3>Large Estate Package (Family)</h3>
+          <p class="package-card__price">$2,000.00</p>
+          <ul>
+            <li>Grantors' Certification and Memorandum of Trust</li>
+            <li>Revocable Trust Agreement</li>
+            <li>Pour Over Will</li>
+            <li>Durable General Power of Attorney</li>
+            <li>Oregon Advanced Directive</li>
+            <li>Health Care Power of Attorney</li>
+          </ul>
+        </div>
+        <div class="package-card">
+          <h3>Will Package (Couple)</h3>
+          <p class="package-card__price">$1,000.00</p>
+          <ul>
+            <li>Couple's will package prepared to your direction</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="packages__single">
+        <h3>Individual Documents</h3>
+        <div class="package-grid">
+          <div class="package-card">
+            <h4>Durable General Power of Attorney</h4>
+            <p class="package-card__price">$250.00</p>
+          </div>
+          <div class="package-card">
+            <h4>Health Care Power of Attorney</h4>
+            <p class="package-card__price">$250.00</p>
+          </div>
+          <div class="package-card">
+            <h4>Advance Directive</h4>
+            <p class="package-card__price">$250.00</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="packages__cta" style="margin-top: 2rem;">
+        <a class="btn btn--primary" href={`${base}bookings/`}>Book an Appointment</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="assurance reveal delay-2">
+    <div class="assurance__inner">
+      <h2>Personal, Professional, Friendly</h2>
+      <p>Family owned and operated since 1995. We take pride in serving our community with care and clarity.</p>
+    </div>
+  </section>
+</Layout>

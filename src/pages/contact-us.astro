@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm';
+---
+
+<Layout
+  title="Contact Us"
+  description="Contact A1 Quality Paralegal in Grants Pass, Oregon. We are here to help with your legal document needs."
+>
+  <section class="page-hero reveal">
+    <div class="page-hero__inner">
+      <h1>Contact Us</h1>
+      <p>We are here to help. Reach out and we will respond promptly.</p>
+    </div>
+  </section>
+
+  <section class="contact-page reveal delay-1">
+    <div class="contact-page__inner">
+      <div class="contact-page__details">
+        <h2>Contact</h2>
+        <p>327 NE 6th St #1,<br />Grants Pass, OR 97526</p>
+        <p>Call or Text! 541-474-2260</p>
+        <p><a href="mailto:a1qualitydocuments@gmail.com">a1qualitydocuments@gmail.com</a></p>
+        <div class="contact-page__map">
+          <iframe
+            title="A1 Quality Paralegal Map"
+            src="https://www.google.com/maps?q=327%20NE%206th%20St%20%231,%20Grants%20Pass,%20OR%2097526&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="contact-page__form">
+        <h2>Send a Message</h2>
+        <!-- client:load renders the React form in the browser -->
+        <ContactForm client:load />
+      </div>
+    </div>
+  </section>
+</Layout>

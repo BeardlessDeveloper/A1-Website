@@ -1,0 +1,84 @@
+---
+import '../styles/main.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Family-owned legal document preparation in Grants Pass, Oregon since 1995.' } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title} | A1 Quality Paralegal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to Main Content</a>
+
+    <header class="site-header">
+      <div class="site-header__inner">
+        <div class="site-brand">
+          <a class="site-logo" href={base}>
+            <img src={`${base}images/logo.png`} alt="A1 Quality Paralegal" loading="eager" height="64" />
+          </a>
+        </div>
+        <nav class="site-nav" aria-label="Site">
+          <ul class="site-nav__list">
+            <li><a href={base}>Home</a></li>
+            <li><a href={`${base}estate-planning/`}>Estate Planning</a></li>
+            <li><a href={`${base}bookings/`}>Book an Appointment</a></li>
+            <li><a href={`${base}contact-us/`}>Contact Us</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="site-main" role="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div class="footer-brand">
+          <a class="site-logo" href={base}>
+            <img src={`${base}images/logo.png`} alt="A1 Quality Paralegal" loading="lazy" height="64" />
+          </a>
+          <p class="footer-tagline">A1 Quality Paralegal LLC</p>
+          <p class="footer-tagline">Personal, professional, and friendly service since 1995.</p>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact</h3>
+          <ul class="footer-contact__list">
+            <li>327 NE 6th St #1, Grants Pass, OR 97526</li>
+            <li>541-474-2260</li>
+            <li><a href="mailto:a1qualitydocuments@gmail.com">a1qualitydocuments@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-menu">
+          <h3>Quick Links</h3>
+          <ul class="footer-nav">
+            <li><a href={base}>Home</a></li>
+            <li><a href={`${base}estate-planning/`}>Estate Planning</a></li>
+            <li><a href={`${base}bookings/`}>Book an Appointment</a></li>
+            <li><a href={`${base}contact-us/`}>Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__legal">
+        <p class="footer-disclaimer">
+          *The definition excerpts provided above come directly from the Oregon State Bar web site. It is important to realize that changes may occur in this area of law. This information is not intended to be legal advice regarding your particular needs or problem, and is not intended to replace the work of an attorney. We are not attorneys and we do not offer nor do we provide legal advice. Should you require legal advice, you should contact an attorney or the Oregon State Bar Association's Lawyer Referral Service at (503) 684-3763.
+        </p>
+        <p>&copy; {new Date().getFullYear()} A1 Quality Paralegal. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

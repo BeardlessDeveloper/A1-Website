@@ -1,0 +1,103 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title="Home">
+  <section class="hero reveal">
+    <div class="hero__inner">
+      <div class="hero__copy">
+        <p class="hero__tagline">Helping You, Help Yourself</p>
+        <h1>A1 Quality Paralegal</h1>
+        <p class="hero__since">Serving Grants Pass and Oregon since 1995.</p>
+        <p>We are a family owned and operated business, providing our community personal, professional, and friendly service for legal document preparation and filing.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href={`${base}estate-planning/`}>Read More</a>
+          <a class="btn btn--ghost" href={`${base}bookings/`}>Book an Appointment</a>
+        </div>
+      </div>
+      <div class="hero__card">
+        <h2>Estate Planning</h2>
+        <p>Start with clear, guided packages designed to fit your family and goals.</p>
+        <div class="hero__card-details">
+          <p><strong>Wills &amp; Trusts</strong></p>
+          <p><strong>Power of Attorney</strong></p>
+          <p><strong>Deeds &amp; Transfers</strong></p>
+        </div>
+        <a class="btn btn--secondary" href={`${base}estate-planning/`}>Estate Packages</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mission reveal delay-1">
+    <div class="mission__inner">
+      <div class="mission__copy">
+        <h2>Our Goal</h2>
+        <p>Our number one goal is to listen to your words, hear your heart, and support you in accomplishing your desires. By meeting our goal, we have the pleasure of turning customers into lifelong friends.</p>
+        <p>A1 Quality Paralegal is here to help assist you through the legal document process. We take your concerns, issues, and needs seriously.</p>
+      </div>
+      <div class="mission__panel">
+        <h3>What We Provide</h3>
+        <ul>
+          <li>Full service document preparation</li>
+          <li>Guidance and filing support</li>
+          <li>Notary services available</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="services reveal delay-1">
+    <div class="services__inner">
+      <div class="section-head">
+        <h2>Document Services</h2>
+        <p>We have an extensive library of legal documents and prepare them to your direction.</p>
+      </div>
+      <div class="service-grid">
+        <div class="service-card">
+          <span class="service-card__icon">Deeds</span>
+          <h3>Deeds &amp; Transfers</h3>
+          <p>Property transfer documents prepared clearly and accurately.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-card__icon">POA</span>
+          <h3>Power of Attorney</h3>
+          <p>Durable Power of Attorney and Healthcare Power of Attorney preparation.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-card__icon">Wills</span>
+          <h3>Wills &amp; Trusts</h3>
+          <p>Wills, trusts, and supporting documents tailored to your needs.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-card__icon">Docs</span>
+          <h3>Document Services</h3>
+          <p>Notary services, document revisions, and preparation for a range of needs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonial reveal delay-2">
+    <div class="testimonial__inner">
+      <p class="testimonial__quote">Thank you for your help in completing my Trust and Will. We are grateful to work with you, you are so nice to be with. May our Lord bless you in all you do.</p>
+      <p class="testimonial__name">Peggy H.</p>
+    </div>
+  </section>
+
+  <section class="contact-cta reveal delay-2">
+    <div class="contact-cta__inner">
+      <div>
+        <h2>Contact Us</h2>
+        <ul class="contact-cta__list">
+          <li><strong>Address:</strong> 327 NE 6th St #1, Grants Pass, OR 97526</li>
+          <li><strong>Phone:</strong> 541-474-2260</li>
+          <li><strong>Email:</strong> <a href="mailto:a1qualitydocuments@gmail.com">a1qualitydocuments@gmail.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <a class="btn btn--primary" href={`${base}contact-us/`}>Contact Us</a>
+      </div>
+    </div>
+  </section>
+</Layout>
