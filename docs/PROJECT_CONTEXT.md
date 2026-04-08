@@ -200,9 +200,11 @@ See `A1-API/docs/SERVER_AGENT_DEPLOY.md` for step-by-step server update instruct
 - [x] UI/UX overhaul — Cormorant Garamond/Source Sans 3 typography, mobile hamburger nav, active nav links, IntersectionObserver scroll reveals
 - [x] Custom domain live at `www.a1paralegal.com` (GoDaddy DNS, CNAME + A records)
 - [x] `astro.config.mjs` updated — base path removed, site set to custom domain
-- [ ] Ubuntu server provisioned but Gmail App Password not yet configured — contact form email disabled until then
+- [x] `api.a1paralegal.com` live — health check confirmed `{"ok":true}`
+- [ ] Gmail App Password not yet configured — contact form email disabled until then
 - [ ] GitHub Pages DNS check shows warning (known GitHub bug) — site works correctly
-- [ ] Cloudflare nameservers set in GoDaddy — awaiting propagation (up to 48h)
+- [x] Cloudflare nameservers propagated — DNS fully managed by Cloudflare
+- [x] Cloudflare Tunnel active — `api.a1paralegal.com` routing to Ubuntu server
 - [ ] Payments not yet implemented
 - [ ] Intake form submissions currently saved to disk only — email/database integration pending
 

@@ -4,9 +4,8 @@ Domain (`a1paralegal.com`) is registered through **GoDaddy** but DNS is now mana
 GoDaddy nameservers have been updated to point to Cloudflare — propagation may take up to 48 hours.
 The `api` subdomain will be created automatically by `cloudflared tunnel route dns` once the tunnel is active.
 
-> **Status:** Custom domain is live at `https://www.a1paralegal.com`. Cloudflare nameservers set,
-> awaiting full propagation. Cloudflare Tunnel configured in dashboard, pending nameserver propagation
-> before the tunnel can authorize and go active.
+> **Status:** Custom domain is live at `https://www.a1paralegal.com`. Cloudflare nameservers active and
+> propagated. Cloudflare Tunnel active — `api.a1paralegal.com` routes to the Ubuntu server.
 
 ---
 
@@ -109,7 +108,7 @@ pm2 restart a1-api
 
 - [x] `https://www.a1paralegal.com` loads the site with a valid SSL padlock
 - [ ] `https://a1paralegal.com` redirects to `www`
-- [ ] `https://api.a1paralegal.com/health` returns `{"ok":true}`
+- [x] `https://api.a1paralegal.com/health` returns `{"ok":true}`
 - [ ] Submitting the contact form sends an email to `a1qualitydocuments@gmail.com` (pending Gmail App Password)
 - [ ] No browser console errors about CORS or mixed content
 
