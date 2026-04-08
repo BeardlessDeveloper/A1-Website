@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
 <Layout
@@ -9,21 +10,23 @@ import Layout from '../layouts/Layout.astro';
   <section class="page-hero reveal">
     <div class="page-hero__inner">
       <h1>Book an Appointment</h1>
-      <p>Let us know what you need and we will schedule a time that works for you.</p>
+      <p>Choose a time that works for you. We will confirm your appointment and prepare for your visit.</p>
     </div>
   </section>
 
   <section class="booking reveal delay-1">
     <div class="booking__inner">
       <div class="booking__info">
-        <h2>How Booking Works</h2>
+        <h2>How It Works</h2>
         <ul>
-          <li>Choose a service and preferred time.</li>
+          <li>Choose a service type and preferred time below.</li>
           <li>We confirm your appointment and any required documents.</li>
           <li>Meet in person or by phone for your consultation.</li>
         </ul>
-        <p>Call or Text! 541-474-2260</p>
+        <p style="margin-top: 24px;"><strong>Prefer to call?</strong></p>
+        <p><a href="tel:+15414742260">541-474-2260</a></p>
         <p><a href="mailto:a1qualitydocuments@gmail.com">a1qualitydocuments@gmail.com</a></p>
+        <p style="margin-top: 24px;">Not sure what you need? <a href={`${base}contact-us/`}>Send us a message</a> and we will help you figure it out.</p>
       </div>
       <div class="booking__form">
         <h3>Request a Time</h3>
@@ -39,12 +42,12 @@ import Layout from '../layouts/Layout.astro';
             loading="lazy"
           ></iframe>
           <p>
-            If the calendar does not load, open it directly:
+            Calendar not loading?
             <a
               href="https://calendar.google.com/calendar/appointments/AcZssZ0yhqmSu5PLaG2up8ZsB_KFKc-AS1YFYnLpmUs?gv=true"
               target="_blank"
               rel="noopener noreferrer"
-            >Book your appointment</a>.
+            >Open it directly</a>.
           </p>
         </div>
       </div>

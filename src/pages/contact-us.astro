@@ -17,9 +17,15 @@ import ContactForm from '../components/ContactForm';
   <section class="contact-page reveal delay-1">
     <div class="contact-page__inner">
       <div class="contact-page__details">
-        <h2>Contact</h2>
-        <p>327 NE 6th St #1,<br />Grants Pass, OR 97526</p>
-        <p>Call or Text! 541-474-2260</p>
+        <h2>Get in Touch</h2>
+        <p>
+          <a
+            href="https://maps.google.com/?q=327+NE+6th+St+%231,+Grants+Pass,+OR+97526"
+            target="_blank"
+            rel="noopener noreferrer"
+          >327 NE 6th St #1,<br />Grants Pass, OR 97526</a>
+        </p>
+        <p><a href="tel:+15414742260">Call or Text: 541-474-2260</a></p>
         <p><a href="mailto:a1qualitydocuments@gmail.com">a1qualitydocuments@gmail.com</a></p>
         <div class="contact-page__map">
           <iframe
@@ -33,7 +39,6 @@ import ContactForm from '../components/ContactForm';
 
       <div class="contact-page__form">
         <h2>Send a Message</h2>
-        <!-- client:load renders the React form in the browser -->
         <ContactForm client:load />
       </div>
     </div>

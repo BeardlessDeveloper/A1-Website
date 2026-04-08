@@ -8,6 +8,12 @@ interface Props {
 
 const { title, description = 'Family-owned legal document preparation in Grants Pass, Oregon since 1995.' } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const { pathname } = Astro.url;
+
+function isActive(href: string) {
+  if (href === base) return pathname === base || pathname === base.slice(0, -1);
+  return pathname.startsWith(href);
+}
 ---
 
 <!doctype html>
@@ -19,7 +25,10 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     <title>{title} | A1 Quality Paralegal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to Main Content</a>
@@ -28,15 +37,44 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       <div class="site-header__inner">
         <div class="site-brand">
           <a class="site-logo" href={base}>
-            <img src={`${base}images/logo.png`} alt="A1 Quality Paralegal" loading="eager" height="64" />
+            <img src={`${base}images/logo.png`} alt="A1 Quality Paralegal" loading="eager" height="58" />
           </a>
         </div>
-        <nav class="site-nav" aria-label="Site">
+
+        <button
+          class="nav-toggle"
+          aria-label="Toggle navigation"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+        >
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+
+        <nav class="site-nav" id="primary-nav" aria-label="Site">
           <ul class="site-nav__list">
-            <li><a href={base}>Home</a></li>
-            <li><a href={`${base}estate-planning/`}>Estate Planning</a></li>
-            <li><a href={`${base}bookings/`}>Book an Appointment</a></li>
-            <li><a href={`${base}contact-us/`}>Contact Us</a></li>
+            <li>
+              <a href={base} aria-current={isActive(base) ? 'page' : undefined}>Home</a>
+            </li>
+            <li>
+              <a
+                href={`${base}estate-planning/`}
+                aria-current={isActive(`${base}estate-planning/`) ? 'page' : undefined}
+              >Estate Planning</a>
+            </li>
+            <li>
+              <a
+                href={`${base}bookings/`}
+                aria-current={isActive(`${base}bookings/`) ? 'page' : undefined}
+              >Book an Appointment</a>
+            </li>
+            <li>
+              <a
+                href={`${base}contact-us/`}
+                aria-current={isActive(`${base}contact-us/`) ? 'page' : undefined}
+              >Contact Us</a>
+            </li>
           </ul>
         </nav>
       </div>
@@ -50,7 +88,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       <div class="site-footer__inner">
         <div class="footer-brand">
           <a class="site-logo" href={base}>
-            <img src={`${base}images/logo.png`} alt="A1 Quality Paralegal" loading="lazy" height="64" />
+            <img src={`${base}images/logo.png`} alt="A1 Quality Paralegal" loading="lazy" height="58" />
           </a>
           <p class="footer-tagline">A1 Quality Paralegal LLC</p>
           <p class="footer-tagline">Personal, professional, and friendly service since 1995.</p>
@@ -58,8 +96,14 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <div class="footer-contact">
           <h3>Contact</h3>
           <ul class="footer-contact__list">
-            <li>327 NE 6th St #1, Grants Pass, OR 97526</li>
-            <li>541-474-2260</li>
+            <li>
+              <a
+                href="https://maps.google.com/?q=327+NE+6th+St+%231,+Grants+Pass,+OR+97526"
+                target="_blank"
+                rel="noopener noreferrer"
+              >327 NE 6th St #1, Grants Pass, OR 97526</a>
+            </li>
+            <li><a href="tel:+15414742260">541-474-2260</a></li>
             <li><a href="mailto:a1qualitydocuments@gmail.com">a1qualitydocuments@gmail.com</a></li>
           </ul>
         </div>
@@ -75,10 +119,53 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       </div>
       <div class="site-footer__legal">
         <p class="footer-disclaimer">
-          *The definition excerpts provided above come directly from the Oregon State Bar web site. It is important to realize that changes may occur in this area of law. This information is not intended to be legal advice regarding your particular needs or problem, and is not intended to replace the work of an attorney. We are not attorneys and we do not offer nor do we provide legal advice. Should you require legal advice, you should contact an attorney or the Oregon State Bar Association's Lawyer Referral Service at (503) 684-3763.
+          *The definition excerpts provided above come directly from the Oregon State Bar web site. It
+          is important to realize that changes may occur in this area of law. This information is not
+          intended to be legal advice regarding your particular needs or problem, and is not intended
+          to replace the work of an attorney. We are not attorneys and we do not offer nor do we
+          provide legal advice. Should you require legal advice, you should contact an attorney or the
+          Oregon State Bar Association's Lawyer Referral Service at (503) 684-3763.
         </p>
         <p>&copy; {new Date().getFullYear()} A1 Quality Paralegal. All rights reserved.</p>
       </div>
     </footer>
+
+    <script>
+      // Mobile nav toggle
+      const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+      const nav = document.getElementById('primary-nav');
+      if (toggle && nav) {
+        toggle.addEventListener('click', () => {
+          const open = toggle.getAttribute('aria-expanded') === 'true';
+          toggle.setAttribute('aria-expanded', String(!open));
+          nav.classList.toggle('is-open');
+        });
+        nav.querySelectorAll('a').forEach(a => {
+          a.addEventListener('click', () => {
+            toggle.setAttribute('aria-expanded', 'false');
+            nav.classList.remove('is-open');
+          });
+        });
+      }
+
+      // Scroll reveals via IntersectionObserver
+      const reveals = document.querySelectorAll<HTMLElement>('.reveal');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          entries => {
+            entries.forEach(e => {
+              if (e.isIntersecting) {
+                e.target.classList.add('is-visible');
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.08 }
+        );
+        reveals.forEach(el => io.observe(el));
+      } else {
+        reveals.forEach(el => el.classList.add('is-visible'));
+      }
+    </script>
   </body>
 </html>

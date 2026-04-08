@@ -12,7 +12,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <p class="hero__since">Serving Grants Pass and Oregon since 1995.</p>
         <p>We are a family owned and operated business, providing our community personal, professional, and friendly service for legal document preparation and filing.</p>
         <div class="hero__actions">
-          <a class="btn btn--primary" href={`${base}estate-planning/`}>Read More</a>
+          <a class="btn btn--primary" href={`${base}estate-planning/`}>Our Services</a>
           <a class="btn btn--ghost" href={`${base}bookings/`}>Book an Appointment</a>
         </div>
       </div>
@@ -24,7 +24,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <p><strong>Power of Attorney</strong></p>
           <p><strong>Deeds &amp; Transfers</strong></p>
         </div>
-        <a class="btn btn--secondary" href={`${base}estate-planning/`}>Estate Packages</a>
+        <a class="btn btn--secondary" href={`${base}estate-planning/`}>View Estate Packages</a>
       </div>
     </div>
   </section>
@@ -70,8 +70,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <p>Wills, trusts, and supporting documents tailored to your needs.</p>
         </div>
         <div class="service-card">
-          <span class="service-card__icon">Docs</span>
-          <h3>Document Services</h3>
+          <span class="service-card__icon">Notary</span>
+          <h3>Notary &amp; More</h3>
           <p>Notary services, document revisions, and preparation for a range of needs.</p>
         </div>
       </div>
@@ -80,23 +80,30 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
   <section class="testimonial reveal delay-2">
     <div class="testimonial__inner">
-      <p class="testimonial__quote">Thank you for your help in completing my Trust and Will. We are grateful to work with you, you are so nice to be with. May our Lord bless you in all you do.</p>
-      <p class="testimonial__name">Peggy H.</p>
+      <p class="testimonial__quote">"Thank you for your help in completing my Trust and Will. We are grateful to work with you, you are so nice to be with. May our Lord bless you in all you do."</p>
+      <p class="testimonial__name">— Peggy H.</p>
     </div>
   </section>
 
   <section class="contact-cta reveal delay-2">
     <div class="contact-cta__inner">
       <div>
-        <h2>Contact Us</h2>
+        <h2>Ready to Get Started?</h2>
         <ul class="contact-cta__list">
-          <li><strong>Address:</strong> 327 NE 6th St #1, Grants Pass, OR 97526</li>
-          <li><strong>Phone:</strong> 541-474-2260</li>
+          <li>
+            <strong>Address:</strong>
+            <a
+              href="https://maps.google.com/?q=327+NE+6th+St+%231,+Grants+Pass,+OR+97526"
+              target="_blank"
+              rel="noopener noreferrer"
+            >327 NE 6th St #1, Grants Pass, OR 97526</a>
+          </li>
+          <li><strong>Phone:</strong> <a href="tel:+15414742260">541-474-2260</a></li>
           <li><strong>Email:</strong> <a href="mailto:a1qualitydocuments@gmail.com">a1qualitydocuments@gmail.com</a></li>
         </ul>
       </div>
       <div>
-        <a class="btn btn--primary" href={`${base}contact-us/`}>Contact Us</a>
+        <a class="btn btn--primary" href={`${base}contact-us/`}>Send Us a Message</a>
       </div>
     </div>
   </section>
