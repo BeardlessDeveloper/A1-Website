@@ -15,7 +15,7 @@
 
 body {
   margin: 0;
-  font-family: 'Source Sans 3', Verdana, sans-serif;
+  font-family: Verdana, sans-serif;
   color: var(--ink);
   background: radial-gradient(circle at top, #ffffff 0%, #f5f7ff 45%, #eef2ff 100%);
   line-height: 1.7;
@@ -27,7 +27,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: Verdana, sans-serif;
   line-height: 1.15;
 }
 
@@ -143,7 +143,7 @@ a:hover {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.09em;
-  font-family: 'Source Sans 3', Verdana, sans-serif;
+  font-family: Verdana, sans-serif;
 }
 
 .site-nav__list a {
@@ -210,7 +210,7 @@ a:hover {
   padding: 12px 26px;
   border-radius: 999px;
   font-weight: 600;
-  font-family: 'Source Sans 3', Verdana, sans-serif;
+  font-family: Verdana, sans-serif;
   font-size: 0.88rem;
   letter-spacing: 0.04em;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -270,7 +270,7 @@ a:hover {
   color: var(--forest);
   margin: 0 0 10px;
   font-size: 0.78rem;
-  font-family: 'Source Sans 3', Verdana, sans-serif;
+  font-family: Verdana, sans-serif;
 }
 
 .hero__since {
@@ -442,7 +442,7 @@ a:hover {
   letter-spacing: 0.08em;
   font-size: 0.7rem;
   text-transform: uppercase;
-  font-family: 'Source Sans 3', Verdana, sans-serif;
+  font-family: Verdana, sans-serif;
 }
 
 .service-card h3 {
@@ -476,7 +476,7 @@ a:hover {
 }
 
 .testimonial__quote {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: Verdana, sans-serif;
   font-size: clamp(1.3rem, 2.5vw, 1.75rem);
   font-style: italic;
   margin: 0 0 20px;
@@ -490,7 +490,7 @@ a:hover {
   letter-spacing: 0.12em;
   font-size: 0.78rem;
   color: var(--forest);
-  font-family: 'Source Sans 3', Verdana, sans-serif;
+  font-family: Verdana, sans-serif;
 }
 
 /* ── Contact CTA band ── */
@@ -572,7 +572,7 @@ a:hover {
   font-size: 0.88rem;
   color: var(--forest);
   font-weight: 600;
-  font-family: 'Source Sans 3', Verdana, sans-serif;
+  font-family: Verdana, sans-serif;
 }
 
 .packages__single {
@@ -617,7 +617,7 @@ a:hover {
   letter-spacing: 0.1em;
   padding: 4px 12px;
   border-radius: 999px;
-  font-family: 'Source Sans 3', Verdana, sans-serif;
+  font-family: Verdana, sans-serif;
 }
 
 .package-card h3 {
@@ -635,7 +635,7 @@ a:hover {
   color: var(--forest);
   margin: 6px 0 18px;
   font-size: 1.15rem;
-  font-family: 'Source Sans 3', Verdana, sans-serif;
+  font-family: Verdana, sans-serif;
 }
 
 .package-card ul {
@@ -794,7 +794,7 @@ a:hover {
   gap: 6px;
   font-weight: 600;
   font-size: 0.9rem;
-  font-family: 'Source Sans 3', Verdana, sans-serif;
+  font-family: Verdana, sans-serif;
 }
 
 .form input,
@@ -893,7 +893,7 @@ a:hover {
 }
 
 .intake-optional {
-  font-family: 'Source Sans 3', Verdana, sans-serif;
+  font-family: Verdana, sans-serif;
   font-size: 0.8rem;
   font-weight: 400;
   color: var(--soft-ink);
@@ -913,13 +913,13 @@ a:hover {
 
 .intake-grid-3 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 14px;
 }
 
 .intake-grid-4 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 14px;
 }
 
@@ -952,7 +952,7 @@ a:hover {
   gap: 6px;
   font-weight: 600;
   font-size: 0.9rem;
-  font-family: 'Source Sans 3', Verdana, sans-serif;
+  font-family: Verdana, sans-serif;
 }
 
 .intake-add-btn {
@@ -1016,7 +1016,7 @@ a:hover {
   text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--soft-ink);
-  font-family: 'Source Sans 3', Verdana, sans-serif;
+  font-family: Verdana, sans-serif;
   padding: 0 4px;
 }
 
@@ -1045,6 +1045,11 @@ a:hover {
 }
 
 @media (max-width: 600px) {
+  .intake-grid-3,
+  .intake-grid-4 {
+    grid-template-columns: 1fr;
+  }
+
   .intake-roster-head,
   .intake-roster-row {
     grid-template-columns: 1fr;
@@ -1152,7 +1157,7 @@ a:hover {
 }
 
 .not-found__code {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: Verdana, sans-serif;
   font-size: clamp(6rem, 18vw, 12rem);
   margin: 0;
   color: var(--forest);
