@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import IntakeForm from '../components/IntakeForm';
+---
+
+<Layout
+  title="Client Intake Form"
+  description="Submit your estate planning intake information to A1 Quality Paralegal in Grants Pass, Oregon."
+>
+  <section class="page-hero reveal">
+    <div class="page-hero__inner">
+      <h1>Client Intake Form</h1>
+      <p>
+        Please fill out the form below with as much detail as you have available. You can leave
+        fields blank if you are unsure — we will review everything together at your appointment.
+      </p>
+    </div>
+  </section>
+
+  <section class="intake-page reveal delay-1">
+    <div class="intake-page__inner">
+      <div class="intake-page__intro">
+        <div class="intake-notice">
+          <strong>Before you begin:</strong> This form collects the information needed to prepare
+          your estate planning documents. All fields marked with * are required. Your information
+          is sent directly to our office and kept confidential.
+        </div>
+      </div>
+      <IntakeForm client:load />
+    </div>
+  </section>
+</Layout>
