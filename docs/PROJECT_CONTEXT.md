@@ -207,6 +207,7 @@ See `A1-API/docs/SERVER_AGENT_DEPLOY.md` for step-by-step server update instruct
 - [x] Cloudflare Tunnel active — `api.a1paralegal.com` routing to Ubuntu server
 - [ ] Payments not yet implemented
 - [ ] Intake form submissions currently saved to disk only — email/database integration pending
+- [ ] Future: "Reserve Your Spot" flow — client pays a deposit/retainer, then gets access to the intake form. Intake stays at `/intake/` but becomes gated behind a payment step rather than a direct shared link. Likely needs a `/reserve/` page with payment integration (Stripe or similar) on the API side.
 
 ---
 
