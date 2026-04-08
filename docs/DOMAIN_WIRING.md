@@ -1,11 +1,12 @@
 # Domain Wiring Guide — A1 Quality Paralegal
 
-Domain (`a1paralegal.com`) is registered and managed through **GoDaddy**.
-The `api` subdomain is managed automatically by Cloudflare Tunnel (`cloudflared tunnel route dns`).
+Domain (`a1paralegal.com`) is registered through **GoDaddy** but DNS is now managed by **Cloudflare**.
+GoDaddy nameservers have been updated to point to Cloudflare — propagation may take up to 48 hours.
+The `api` subdomain will be created automatically by `cloudflared tunnel route dns` once the tunnel is active.
 
-> **Status:** Custom domain is live at `https://www.a1paralegal.com`. DNS records are in place.
-> GitHub Pages shows a "DNS check unsuccessful" warning — this is a known GitHub bug and can be
-> ignored as long as the site loads correctly.
+> **Status:** Custom domain is live at `https://www.a1paralegal.com`. Cloudflare nameservers set,
+> awaiting full propagation. Cloudflare Tunnel configured in dashboard, pending nameserver propagation
+> before the tunnel can authorize and go active.
 
 ---
 
@@ -31,7 +32,9 @@ The `api` record is created automatically by `cloudflared tunnel route dns` (cov
 
 ## Part 2 — Create DNS records for GitHub Pages
 
-Log into GoDaddy DNS and add these records. GoDaddy does not have a "proxy" toggle — just enter the type, name, and value as shown.
+These records were originally created in GoDaddy and have since been imported into Cloudflare. They are now managed in the Cloudflare DNS dashboard. The `www` CNAME and apex A records should already be present — verify in Cloudflare → DNS → Records.
+
+For the **www CNAME**, set proxy status to **DNS only** (grey cloud) — GitHub Pages handles HTTPS and proxying through Cloudflare can interfere with certificate provisioning.
 
 ### www subdomain (CNAME)
 

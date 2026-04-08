@@ -65,9 +65,8 @@ The decision was made to migrate off WordPress entirely and rebuild as a static 
 
 | Component | Tool | Notes |
 |---|---|---|
-| DNS (www + apex) | GoDaddy | CNAME + A records pointing to GitHub Pages |
-| DNS (api subdomain) | Cloudflare Tunnel | `api.a1paralegal.com` → `localhost:3001`, auto-managed by `cloudflared` |
-| Tunnel | Cloudflare Tunnel | Exposes Ubuntu server without static IP or open ports |
+| DNS (all records) | Cloudflare | Domain moved from GoDaddy nameservers — Cloudflare manages all DNS |
+| Tunnel | Cloudflare Tunnel | `api.a1paralegal.com` → `localhost:3001`, exposes Ubuntu server without static IP |
 | SSL (frontend) | GitHub Pages / Let's Encrypt | Automatic via Enforce HTTPS |
 | SSL (API) | Cloudflare Tunnel | Automatic — no cert management needed |
 | Email (SMTP) | Gmail + App Password | Sends contact form notifications — not yet configured |
@@ -203,6 +202,7 @@ See `A1-API/docs/SERVER_AGENT_DEPLOY.md` for step-by-step server update instruct
 - [x] `astro.config.mjs` updated — base path removed, site set to custom domain
 - [ ] Ubuntu server provisioned but Gmail App Password not yet configured — contact form email disabled until then
 - [ ] GitHub Pages DNS check shows warning (known GitHub bug) — site works correctly
+- [ ] Cloudflare nameservers set in GoDaddy — awaiting propagation (up to 48h)
 - [ ] Payments not yet implemented
 - [ ] Intake form submissions currently saved to disk only — email/database integration pending
 
