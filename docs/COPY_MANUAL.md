@@ -83,7 +83,7 @@ Family-owned, community-rooted, approachable. We have been doing this since 1995
 | "advise you" | Implies legal advice | "provide information," "tell you about the process" |
 | "you should" | Prescriptive — legal advice territory | "you may want to," "some clients choose to" |
 | "recommend" | Implies professional judgment on legal strategy | "explain the options," "help you compare" |
-| "guidance" / "guide you" | Loaded term — implies we are directing decisions | "walk you through," "tell you about," "help you understand" |
+| "guidance" / "guide you" / "guided" | Loaded term — implies we are directing decisions | "walk you through," "tell you about," "help you understand," "straightforward" |
 | "we will handle it" | Overpromises our scope | "we will prepare the documents" |
 | "protect you" | Legal outcome claim | "help you get the documents in place" |
 | "ensure your wishes are carried out" | Legal outcome claim | "prepare documents that reflect your wishes" |
