@@ -12,7 +12,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <p class="hero__since">Serving Grants Pass and Oregon since 1995.</p>
         <p>We are a family owned and operated business, providing our community personal, professional, and friendly service for legal document preparation and filing.</p>
         <div class="hero__actions">
-          <a class="btn btn--primary" href={`${base}estate-planning/`}>Our Services</a>
+          <a class="btn btn--primary" href="#services">Our Services</a>
           <a class="btn btn--ghost" href={`${base}bookings/`}>Book an Appointment</a>
         </div>
       </div>
@@ -47,7 +47,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     </div>
   </section>
 
-  <section class="services reveal delay-1">
+  <section id="services" class="services reveal delay-1">
     <div class="services__inner">
       <div class="section-head">
         <h2>Document Services</h2>
