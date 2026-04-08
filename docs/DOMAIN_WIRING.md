@@ -1,8 +1,11 @@
 # Domain Wiring Guide — A1 Quality Paralegal
 
-This guide assumes your domain (`a1paralegal.com`) is managed through Cloudflare DNS.
-If your domain registrar is not Cloudflare, the records are the same — just enter them
-wherever your DNS is managed.
+Domain (`a1paralegal.com`) is registered and managed through **GoDaddy**.
+The `api` subdomain is managed automatically by Cloudflare Tunnel (`cloudflared tunnel route dns`).
+
+> **Status:** Custom domain is live at `https://www.a1paralegal.com`. DNS records are in place.
+> GitHub Pages shows a "DNS check unsuccessful" warning — this is a known GitHub bug and can be
+> ignored as long as the site loads correctly.
 
 ---
 
@@ -28,27 +31,24 @@ The `api` record is created automatically by `cloudflared tunnel route dns` (cov
 
 ## Part 2 — Create DNS records for GitHub Pages
 
-Log into Cloudflare (or your DNS provider) and add these records:
+Log into GoDaddy DNS and add these records. GoDaddy does not have a "proxy" toggle — just enter the type, name, and value as shown.
 
 ### www subdomain (CNAME)
 
-| Type | Name | Content | Proxy status |
-|---|---|---|---|
-| CNAME | `www` | `beardlessdeveloper.github.io` | **DNS only** (grey cloud) |
-
-> Set proxy to **DNS only** — GitHub Pages handles HTTPS itself. Proxying through Cloudflare
-> can interfere with GitHub's certificate provisioning.
+| Type | Name | Value |
+|---|---|---|
+| CNAME | `www` | `beardlessdeveloper.github.io` |
 
 ### Apex domain (A records)
 
 GitHub Pages requires four A records for the root domain. Add all four:
 
-| Type | Name | Content | Proxy status |
-|---|---|---|---|
-| A | `@` | `185.199.108.153` | DNS only |
-| A | `@` | `185.199.109.153` | DNS only |
-| A | `@` | `185.199.110.153` | DNS only |
-| A | `@` | `185.199.111.153` | DNS only |
+| Type | Name | Value |
+|---|---|---|
+| A | `@` | `185.199.108.153` |
+| A | `@` | `185.199.109.153` |
+| A | `@` | `185.199.110.153` |
+| A | `@` | `185.199.111.153` |
 
 These IPs are GitHub's official Pages IPs and do not change.
 
@@ -80,31 +80,9 @@ Once GitHub verifies the domain (the Pages settings page will show a green check
 
 ---
 
-## Part 5 — Update the Astro config for your custom domain
+## Part 5 — Astro config (already done)
 
-Once your custom domain is live, the Astro `base` path is no longer needed. Update the frontend:
-
-In **`astro.config.mjs`**, change:
-
-```js
-// Before (GitHub Pages subdirectory)
-export default defineConfig({
-  site: 'https://beardlessdeveloper.github.io',
-  base: '/A1-Website',
-  ...
-});
-```
-
-```js
-// After (custom domain, root path)
-export default defineConfig({
-  site: 'https://www.a1paralegal.com',
-  // base is removed — site lives at the root
-  ...
-});
-```
-
-Then commit and push — the GitHub Actions workflow will rebuild and redeploy automatically.
+`astro.config.mjs` has been updated. `base: '/A1-Website'` was removed and `site` was set to `https://www.a1paralegal.com`. Do not re-add the `base` field.
 
 ---
 
@@ -126,8 +104,12 @@ pm2 restart a1-api
 
 ## Verification checklist
 
-- [ ] `https://www.a1paralegal.com` loads the site with a valid SSL padlock
+- [x] `https://www.a1paralegal.com` loads the site with a valid SSL padlock
 - [ ] `https://a1paralegal.com` redirects to `www`
 - [ ] `https://api.a1paralegal.com/health` returns `{"ok":true}`
-- [ ] Submitting the contact form sends an email to `a1qualitydocuments@gmail.com`
+- [ ] Submitting the contact form sends an email to `a1qualitydocuments@gmail.com` (pending Gmail App Password)
 - [ ] No browser console errors about CORS or mixed content
+
+> GitHub Pages Settings shows "DNS check unsuccessful" — this is a known intermittent GitHub bug.
+> The site is live and functional. If it bothers you, try removing and re-saving the custom domain
+> in Settings → Pages, then wait a few minutes before checking again.

@@ -20,12 +20,12 @@ npm run preview  # preview the built output
 |---|---|---|
 | Frontend | `src/` | Astro static site, deploys via GitHub Actions |
 | Styles | `src/styles/main.css` | Single CSS file, all design tokens and layout |
-| React islands | `src/components/` | Only `ContactForm.tsx` runs in the browser |
+| React islands | `src/components/` | `ContactForm.tsx` and `IntakeForm.tsx` run in the browser |
 | API server | `../A1-API/` | Separate repo/machine — Express + Nodemailer |
 
-The contact form POSTs to `PUBLIC_API_URL/intake` (set in `.env`, never committed). All other pages are fully static.
+The contact form POSTs to `PUBLIC_API_URL/intake` and the client intake form POSTs to `PUBLIC_API_URL/submit-intake` (set in `.env`, never committed). All other pages are fully static.
 
-When a custom domain is live, remove `base: '/A1-Website'` from `astro.config.mjs` and update `site`.
+The site is live at `https://www.a1paralegal.com`. The `base` path has been removed from `astro.config.mjs` — do not re-add it.
 
 ## Reference docs
 

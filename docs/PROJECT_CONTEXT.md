@@ -65,11 +65,12 @@ The decision was made to migrate off WordPress entirely and rebuild as a static 
 
 | Component | Tool | Notes |
 |---|---|---|
-| DNS / CDN | Cloudflare | Manages domain, issues tunnel CNAME |
-| Tunnel | Cloudflare Tunnel | `api.a1paralegal.com` → `localhost:3001` |
-| SSL (frontend) | GitHub Pages / Let's Encrypt | Automatic |
+| DNS (www + apex) | GoDaddy | CNAME + A records pointing to GitHub Pages |
+| DNS (api subdomain) | Cloudflare Tunnel | `api.a1paralegal.com` → `localhost:3001`, auto-managed by `cloudflared` |
+| Tunnel | Cloudflare Tunnel | Exposes Ubuntu server without static IP or open ports |
+| SSL (frontend) | GitHub Pages / Let's Encrypt | Automatic via Enforce HTTPS |
 | SSL (API) | Cloudflare Tunnel | Automatic — no cert management needed |
-| Email (SMTP) | Gmail + App Password | Sends intake notifications to business email |
+| Email (SMTP) | Gmail + App Password | Sends contact form notifications — not yet configured |
 
 ---
 
@@ -91,7 +92,7 @@ The frontend is public on GitHub Pages (the repo must be public for free Pages h
 The design was already built in the WordPress theme. The CSS was ported directly and is clean, well-organized, and uses CSS custom properties for the design system. Adding a framework would add complexity with no benefit at this scale.
 
 ### Astro Islands (client:load)
-Only `ContactForm.tsx` uses `client:load`. Everything else is server-rendered at build time. This keeps the page payload minimal — the React runtime is only loaded on the Contact page.
+`ContactForm.tsx` and `IntakeForm.tsx` use `client:load`. Everything else is server-rendered at build time. The React runtime is only loaded on pages that use these components.
 
 ---
 
@@ -119,7 +120,9 @@ Defined in `src/styles/main.css` as CSS custom properties:
 | `/` | `src/pages/index.astro` | Hero, mission, services grid, testimonial, contact CTA |
 | `/estate-planning/` | `src/pages/estate-planning.astro` | Package tiers with real pricing |
 | `/bookings/` | `src/pages/bookings.astro` | Google Calendar Appointments embed |
-| `/contact-us/` | `src/pages/contact-us.astro` | React form island + Google Maps embed |
+| `/contact-us/` | `src/pages/contact-us.astro` | React contact form island + Google Maps embed |
+| `/intake/` | `src/pages/intake.astro` | Client-facing estate planning intake form (React island) |
+| `/404` | `src/pages/404.astro` | Custom 404 page |
 
 ---
 
@@ -129,10 +132,13 @@ Base URL configured via `PUBLIC_API_URL` in `.env`.
 
 | Method | Path | Purpose |
 |---|---|---|
-| `POST` | `/intake` | Contact form submission → email notification |
+| `POST` | `/intake` | Contact form → email notification (requires SMTP) |
+| `POST` | `/submit-intake` | Client intake form → saves JSON to `submitted-forms/` on disk |
 | `GET` | `/health` | Health check for monitoring |
 
-The `/intake` route validates name, email, message; sanitizes all input; sends email via Nodemailer to `NOTIFY_EMAIL`. CORS is restricted to `ALLOWED_ORIGINS` (the GitHub Pages domain and custom domain).
+SMTP is optional — the server starts without it. If SMTP is not configured, `/intake` returns a 503 and `/submit-intake` continues saving to disk. CORS is restricted to `ALLOWED_ORIGINS`.
+
+Submitted intake files are saved to `A1-API/submitted-forms/` as `YYYY-MM-DDTHH-MM-SS_ClientName.json`. This is the current storage mechanism while email/database integration is pending.
 
 ---
 
@@ -146,15 +152,15 @@ The `/intake` route validates name, email, message; sanitizes all input; sends e
 
 ### Backend (`A1-API/.env` — not committed, lives only on the server)
 
-| Variable | Purpose |
-|---|---|
-| `PORT` | Port Express listens on (default 3001) |
-| `ALLOWED_ORIGINS` | Comma-separated CORS allowlist |
-| `SMTP_HOST` | SMTP server (smtp.gmail.com) |
-| `SMTP_PORT` | SMTP port (587) |
-| `SMTP_USER` | Gmail address |
-| `SMTP_PASS` | Gmail App Password |
-| `NOTIFY_EMAIL` | Where intake emails are delivered |
+| Variable | Required | Purpose |
+|---|---|---|
+| `PORT` | Yes | Port Express listens on (default 3001) |
+| `ALLOWED_ORIGINS` | Yes | Comma-separated CORS allowlist |
+| `SMTP_HOST` | No | SMTP server — optional, enables `/intake` email |
+| `SMTP_PORT` | No | SMTP port (587) |
+| `SMTP_USER` | No | Gmail address |
+| `SMTP_PASS` | No | Gmail App Password |
+| `NOTIFY_EMAIL` | No | Where contact form emails are delivered |
 
 ---
 
@@ -169,8 +175,7 @@ GitHub Actions runs (deploy.yml)
         ↓
   dist/ uploaded to GitHub Pages
         ↓
-Site live at beardlessdeveloper.github.io/A1-Website/
-(or custom domain once DNS is wired)
+Site live at https://www.a1paralegal.com
 ```
 
 API server updates are manual:
@@ -178,25 +183,28 @@ API server updates are manual:
 git pull on Ubuntu machine → pm2 restart a1-api
 ```
 
+See `A1-API/docs/SERVER_AGENT_DEPLOY.md` for step-by-step server update instructions.
+
 ---
 
 ## Current State (as of April 2026)
 
 - [x] Astro frontend built and deployed to GitHub Pages
-- [x] All four pages ported and polished (Home, Estate Planning, Bookings, Contact)
+- [x] All five pages live (Home, Estate Planning, Bookings, Contact, Client Intake)
 - [x] 404 page added
-- [x] React contact form wired to API endpoint
-- [x] Express API server scaffolded with email handler
-- [x] A1-API repo created at github.com/BeardlessDeveloper/A1-API (private)
+- [x] React contact form wired to API `/intake` endpoint
+- [x] Client intake form (`/intake/`) built and wired to API `/submit-intake` endpoint
+- [x] Express API server running — SMTP optional, file-save intake active
+- [x] A1-API repo at github.com/BeardlessDeveloper/A1-API (private)
 - [x] PM2 and Cloudflare Tunnel instructions documented
 - [x] WordPress PHP files and legacy assets removed from repo
-- [x] UI/UX overhaul — Cormorant Garamond/Source Sans 3 typography, mobile hamburger nav, active nav links, IntersectionObserver scroll reveals, clickable contact info throughout
-- [x] Domain updated to a1paralegal.com across all config and docs
-- [ ] Custom domain not yet wired (DNS records pending — see `docs/DOMAIN_WIRING.md`)
-- [ ] `astro.config.mjs` base path not yet updated for custom domain
-- [ ] Ubuntu server not yet provisioned (pending `docs/UBUNTU_SERVER_SETUP.md`)
-- [ ] Gmail App Password not yet configured
+- [x] UI/UX overhaul — Cormorant Garamond/Source Sans 3 typography, mobile hamburger nav, active nav links, IntersectionObserver scroll reveals
+- [x] Custom domain live at `www.a1paralegal.com` (GoDaddy DNS, CNAME + A records)
+- [x] `astro.config.mjs` updated — base path removed, site set to custom domain
+- [ ] Ubuntu server provisioned but Gmail App Password not yet configured — contact form email disabled until then
+- [ ] GitHub Pages DNS check shows warning (known GitHub bug) — site works correctly
 - [ ] Payments not yet implemented
+- [ ] Intake form submissions currently saved to disk only — email/database integration pending
 
 ---
 
