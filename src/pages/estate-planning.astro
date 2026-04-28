@@ -1,15 +1,35 @@
 ---
 import Layout from '../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+const serviceSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Estate Planning Document Preparation",
+  "provider": { "@type": "LegalService", "name": "A1 Quality Paralegal" },
+  "areaServed": [
+    { "@type": "City", "name": "Grants Pass" },
+    { "@type": "City", "name": "Medford" },
+    { "@type": "AdministrativeArea", "name": "Josephine County" },
+    { "@type": "AdministrativeArea", "name": "Jackson County" }
+  ],
+  "offers": [
+    { "@type": "Offer", "name": "Small Estate Package (Single)", "price": "750.00", "priceCurrency": "USD" },
+    { "@type": "Offer", "name": "Small Estate Package (Family)", "price": "1000.00", "priceCurrency": "USD" },
+    { "@type": "Offer", "name": "Large Estate Package (Single)", "price": "1500.00", "priceCurrency": "USD" },
+    { "@type": "Offer", "name": "Large Estate Package (Family)", "price": "2000.00", "priceCurrency": "USD" }
+  ]
+});
 ---
 
 <Layout
   title="Estate Planning"
   description="Estate planning packages for Oregon families — wills, trusts, power of attorney, and more from A1 Quality Paralegal."
+  schema={serviceSchema}
 >
   <section class="page-hero reveal">
     <div class="page-hero__inner">
-      <h1>Estate Planning</h1>
+      <h1>Estate Planning Document Preparation — Grants Pass, Oregon</h1>
       <p>We help families across Oregon build clear, reliable estate documents with personal attention every step of the way.</p>
     </div>
   </section>

@@ -166,6 +166,27 @@ a:hover {
   color: #fff;
 }
 
+.header-phone {
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-family: Verdana, sans-serif;
+  color: var(--forest);
+  white-space: nowrap;
+  padding: 8px 16px;
+  border: 2px solid var(--forest);
+  border-radius: 999px;
+  letter-spacing: 0.03em;
+  flex-shrink: 0;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.header-phone:hover,
+.header-phone:focus-visible {
+  background: var(--forest);
+  color: #fff;
+  outline: none;
+}
+
 /* ── Main ── */
 
 .site-main {
@@ -1231,6 +1252,10 @@ a:hover {
   .site-nav__list a {
     border-radius: 10px;
     padding: 10px 14px;
+  }
+
+  .header-phone {
+    display: none;
   }
 }
 

@@ -1,14 +1,52 @@
 ---
 import Layout from '../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+const legalServiceSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "A1 Quality Paralegal",
+  "description": "Family-owned legal document preparation service in Grants Pass, Oregon since 1995.",
+  "url": "https://www.a1paralegal.com",
+  "telephone": "+15414742260",
+  "email": "a1qualitydocuments@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "327 NE 6th St #1",
+    "addressLocality": "Grants Pass",
+    "addressRegion": "OR",
+    "postalCode": "97526",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 42.4393,
+    "longitude": -123.3284
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Grants Pass" },
+    { "@type": "City", "name": "Medford" },
+    { "@type": "City", "name": "Ashland" },
+    { "@type": "City", "name": "Rogue River" },
+    { "@type": "AdministrativeArea", "name": "Josephine County" },
+    { "@type": "AdministrativeArea", "name": "Jackson County" }
+  ],
+  "foundingDate": "1995",
+  "priceRange": "$$",
+  "hasMap": "https://maps.google.com/?q=327+NE+6th+St+%231,+Grants+Pass,+OR+97526"
+});
 ---
 
-<Layout title="Home">
-  <section class="hero reveal">
+<Layout
+  title="Paralegal Services in Grants Pass, OR"
+  description="A1 Quality Paralegal prepares wills, trusts, power of attorney, and property documents for Oregon families. Family-owned since 1995. Call 541-474-2260."
+  schema={legalServiceSchema}
+>
+  <section class="hero">
     <div class="hero__inner">
       <div class="hero__copy">
         <p class="hero__tagline">Helping You, Help Yourself</p>
-        <h1>A1 Quality Paralegal</h1>
+        <h1>Legal Document Preparation in Grants Pass, Oregon</h1>
         <p class="hero__since">Serving Grants Pass and Oregon since 1995.</p>
         <p>We are a family owned and operated business, providing our community personal, professional, and friendly service for legal document preparation and filing.</p>
         <div class="hero__actions">

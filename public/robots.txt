@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /intake/
+
+Sitemap: https://www.a1paralegal.com/sitemap-index.xml
