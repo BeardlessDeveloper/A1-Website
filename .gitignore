@@ -19,3 +19,7 @@ desktop.ini
 
 # Generated identity file
 GIT_COMMIT_IDENTITY.md
+
+# Session context — local only
+docs/session-handoff.md
+session-handoff.md

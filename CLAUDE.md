@@ -53,3 +53,8 @@ To initialize after a fresh clone: `git submodule update --init --recursive`
 - Commit the updated dependency file immediately after installation:
   `chore: add <package-name> dependency — <reason>`
 - Never install global packages without explicit KC approval
+
+## Session Handoff
+- At the end of every session update `docs/session-handoff.md` with what was done,
+  current state, and what the next session should start with
+- Read `docs/session-handoff.md` at the start of every session before doing anything else
