@@ -1,3 +1,5 @@
+<!-- Content update rules: instructions/content-update-rules.md -->
+
 # a1-website
 
 ## What This Repo Is
