@@ -35,3 +35,21 @@ To initialize after a fresh clone: `git submodule update --init --recursive`
 | Domain wiring and DNS | `docs/domain-wiring.md` |
 | Copy and content guidelines | `docs/copy-manual.md` |
 | SEO audit history | `docs/seo-audit-2026-04-28.md` |
+
+## Dependency Policy
+- Before installing any new package, library, or tool — stop and tell KC what is needed and why
+- Format the notification as:
+  ```
+  DEPENDENCY NEEDED: <package-name>
+  Reason: <one sentence why it is required>
+  Command: <exact install command>
+  Proceed? (yes/no)
+  ```
+- Only install after receiving explicit confirmation
+- After installing, add the dependency to the appropriate file:
+  - Node packages → `package.json` (via `npm install --save` or `--save-dev`)
+  - Python packages → `requirements.txt` (create if it doesn't exist)
+  - PowerShell modules → note in `docs/` or `README.md`
+- Commit the updated dependency file immediately after installation:
+  `chore: add <package-name> dependency — <reason>`
+- Never install global packages without explicit KC approval
